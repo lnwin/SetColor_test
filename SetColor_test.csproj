@@ -39,13 +39,16 @@
     <Reference Include="DevExpress.Utils.v18.2, Version=18.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraEditors.v18.2, Version=18.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="SharpGL">
-      <HintPath>C:\Users\Administrator\Desktop\sharpgl-v-2.5\extensions\SharpGL.2010\WinformsTemplateProject.2010\Dependencies\SharpGL.dll</HintPath>
+      <HintPath>.\SharpGL.dll</HintPath>
     </Reference>
     <Reference Include="SharpGL.SceneGraph">
-      <HintPath>C:\Users\Administrator\Desktop\sharpgl-v-2.5\extensions\SharpGL.2010\WinformsTemplateProject.2010\Dependencies\SharpGL.SceneGraph.dll</HintPath>
+      <HintPath>.\SharpGL.SceneGraph.dll</HintPath>
     </Reference>
     <Reference Include="SharpGL.WinForms">
-      <HintPath>C:\Users\Administrator\Desktop\sharpgl-v-2.5\extensions\SharpGL.2010\WinformsTemplateProject.2010\Dependencies\SharpGL.WinForms.dll</HintPath>
+      <HintPath>.\SharpGL.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpGL.WPF">
+      <HintPath>.\SharpGL.WPF.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />

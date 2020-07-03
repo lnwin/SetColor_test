@@ -275,20 +275,89 @@ namespace SetColor_test
                 }
                 if (Zcdk)
                 {
-                   // gl.Color(5.0f, 39.0f, 175.0f);
+                   
                     for (int i = 0; i < xds; i++)
                     {
                         Z_color = Math.Abs( maxz[i] / 1000);
-                        if (Z_color > 3)
+                        if (Z_color >= 0 && Z_color < 0.25)
                         {
-                            gl.Color(1.0f , 1.0f, 0.0f);
+                            gl.Color(1.0f, 0.0f, 0.0f);
                             gl.Vertex((maxx[i] - _ZBxT) / _ZBv, (maxy[i] - _ZByT) / _ZBv, (maxz[i] - _ZBzT) / _ZBv);
                         }
-                        else
+
+                        else if (Z_color >= 0.25 && Z_color < 0.5)
                         {
-                            gl.Color(0.2f , 1.0f , 0.0f );
+                            gl.Color(1.0f, 0.25f, 0.0f);
                             gl.Vertex((maxx[i] - _ZBxT) / _ZBv, (maxy[i] - _ZByT) / _ZBv, (maxz[i] - _ZBzT) / _ZBv);
                         }
+                        else if (Z_color >= 0.5 && Z_color < 0.75)
+                        {
+                            gl.Color(1.0f, 0.5f, 0.0f);
+                            gl.Vertex((maxx[i] - _ZBxT) / _ZBv, (maxy[i] - _ZByT) / _ZBv, (maxz[i] - _ZBzT) / _ZBv);
+                        }
+                        else if (Z_color >= 0.75 && Z_color < 1.0)
+                        {
+                            gl.Color(1.0f, 0.75f, 0.0f);
+                            gl.Vertex((maxx[i] - _ZBxT) / _ZBv, (maxy[i] - _ZByT) / _ZBv, (maxz[i] - _ZBzT) / _ZBv);
+                        }
+                        else if (Z_color >= 1.0 && Z_color < 1.25)
+                        {
+                            gl.Color(1.0F, 1.0f, 0.0f);
+                            gl.Vertex((maxx[i] - _ZBxT) / _ZBv, (maxy[i] - _ZByT) / _ZBv, (maxz[i] - _ZBzT) / _ZBv);
+                        }
+                        else if (Z_color >= 1.25 && Z_color < 1.5)
+                        {
+                            gl.Color(0.75f, 1.0f, 0.0f);
+                            gl.Vertex((maxx[i] - _ZBxT) / _ZBv, (maxy[i] - _ZByT) / _ZBv, (maxz[i] - _ZBzT) / _ZBv);
+                        }
+                        else if (Z_color >= 1.5 && Z_color < 1.75)
+                        {
+                            gl.Color(0.5f, 1.0f, 0.0f);
+                            gl.Vertex((maxx[i] - _ZBxT) / _ZBv, (maxy[i] - _ZByT) / _ZBv, (maxz[i] - _ZBzT) / _ZBv);
+                        }
+                        else if (Z_color >= 1.75 && Z_color < 2.0)
+                        {
+                            gl.Color(0.25f, 1.0f, 0.0f);
+                            gl.Vertex((maxx[i] - _ZBxT) / _ZBv, (maxy[i] - _ZByT) / _ZBv, (maxz[i] - _ZBzT) / _ZBv);
+                        }
+                        else if (Z_color >= 2.0 && Z_color < 2.25)
+                        {
+                            gl.Color(0.0f, 1.0f, 0.0f);
+                            gl.Vertex((maxx[i] - _ZBxT) / _ZBv, (maxy[i] - _ZByT) / _ZBv, (maxz[i] - _ZBzT) / _ZBv);
+                        }
+                        else if (Z_color >= 2.25 && Z_color < 2.5)
+                        {
+                            gl.Color(0.0f, 1.0f, 0.25f);
+                            gl.Vertex((maxx[i] - _ZBxT) / _ZBv, (maxy[i] - _ZByT) / _ZBv, (maxz[i] - _ZBzT) / _ZBv);
+                        }
+                        else if (Z_color >= 2.5 && Z_color < 2.75)
+                        {
+                            gl.Color(0.0f, 1.0f, 0.4f);
+                            gl.Vertex((maxx[i] - _ZBxT) / _ZBv, (maxy[i] - _ZByT) / _ZBv, (maxz[i] - _ZBzT) / _ZBv);
+                        }
+                        else if (Z_color >= 2.75 && Z_color < 3.0)//////////////////
+                        {
+                            gl.Color(0.0f, 1.0f, 0.55f);
+                            gl.Vertex((maxx[i] - _ZBxT) / _ZBv, (maxy[i] - _ZByT) / _ZBv, (maxz[i] - _ZBzT) / _ZBv);
+                        }
+                        else if (Z_color >= 3.0 && Z_color < 3.25)
+                        {
+                            gl.Color(0.0f, 1.0f, 0.7f);
+                            gl.Vertex((maxx[i] - _ZBxT) / _ZBv, (maxy[i] - _ZByT) / _ZBv, (maxz[i] - _ZBzT) / _ZBv);
+                        }
+                        else if (Z_color >= 3.25 && Z_color < 3.5)
+                        {
+                            gl.Color(0.0f, 1.0f, 0.85f);
+                            gl.Vertex((maxx[i] - _ZBxT) / _ZBv, (maxy[i] - _ZByT) / _ZBv, (maxz[i] - _ZBzT) / _ZBv);
+                        }
+
+                        else 
+
+                        {
+                            gl.Color(0.0f, 1.0f, 1.0f);
+                            gl.Vertex((maxx[i] - _ZBxT) / _ZBv, (maxy[i] - _ZByT) / _ZBv, (maxz[i] - _ZBzT) / _ZBv);
+                        }                       
+                        
                        
                         //gl.Vertex((maxz[i] - _ZBzT + 0.01) / _ZBv, (maxx[i] - _ZBxT) / _ZBv, (maxy[i] - _ZByT) / _ZBv);
 
