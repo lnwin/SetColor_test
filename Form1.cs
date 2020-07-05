@@ -9,15 +9,27 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using SharpGL;
+using PclSharp;
+using PclSharp.Filters;
+using PclSharp.Struct;
+using PclSharp.IO;
+using PclSharp.SampleConsensus;
+using System.Numerics;
+using System.Runtime.InteropServices;
+using System.Diagnostics;
+
 namespace SetColor_test
 {
+     
     public partial class Form1 : Form
     {
+       
         public Form1()
         {
             InitializeComponent();
-        }
-
+            
+    }
+       
         #region  参数配置
         float[] maxx;//存储最大值最小值
         float[] maxy;
@@ -167,6 +179,97 @@ namespace SetColor_test
             textBox1.Text = Z_color.ToString();
         }
 
+        //StatisticalOutlierRemoval<PointXYZ> ABC;
+        StatisticalOutlierRemovalOfXYZ ABC = new StatisticalOutlierRemovalOfXYZ();
+       
+        PointXYZ a = new PointXYZ();
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            //Filter<PointXYZ> ds  = new Filter <PointXYZ>;
+            
+            PointCloudOfXYZ IN_cloud = new PointCloudOfXYZ();
+            PointCloudOfXYZ OUT_cloud = new PointCloudOfXYZ();
+            gl.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT);
+            double tempx = 0;
+            double tempy = 0;
+            double tempz = 0;
+            //listBox1.Items.Clear();
+            Drawxs = false;
+            Zcdk = true;//再次读取
+                        // CCValue.thStart = true;
+            this.openFileDialog1.ShowDialog();
+            string MyFileName = openFileDialog1.FileName;
+            if (MyFileName.Trim() == "")
+                return;
+            StreamReader MyReader = null;
+            try
+            {
+                MyReader = new StreamReader(MyFileName, System.Text.Encoding.Default);
+
+                string content = MyReader.ReadToEnd();
+                string[] str = content.Split(new string[] { "\r\n" }, StringSplitOptions.None);
+                char[] splitchar = new Char[] { ',' };//拆分数组
+                string[] data1;
+               
+
+                for (int i = 0; i < str.Length - 1; i++)
+                {
+                    data1 = str[i].Split(splitchar);
+                    a.X = float.Parse(data1[0]);
+                    a.Y = float.Parse(data1[1]);
+                    a.Z  = float.Parse(data1[2]);
+                    IN_cloud.Add(a);
+                }
+               
+               // ABC.SetInputCloud(IN_cloud);
+              //  ABC.MeanK = 20;
+              //  ABC.StdDevMulThresh = (1.0);
+              //  ABC.filter(OUT_cloud);
+                maxx = new float[IN_cloud.Count];
+                maxy = new float[IN_cloud.Count];
+                maxz = new float[IN_cloud.Count];
+
+                for (int i = 0; i < IN_cloud.Count - 1; i++)
+                {
+                    a = IN_cloud.Points[i];
+                    if (a.Z>-1500)
+                    { continue; }
+                    else
+                    {
+                        maxx[i] = a.X;
+                        maxy[i] = a.Y;
+                        maxz[i] = a.Z;
+                        tempx += maxx[i];
+                        tempy += maxy[i];
+                        tempz += maxz[i];
+                    }
+                }
+                xds = IN_cloud.Count;
+                _ZBxT = tempx / xds;
+                _ZByT = tempy / xds;
+                _ZBzT = tempz / xds;
+            }
+            catch (Exception Err)
+            {
+                MessageBox.Show("读文本文件发生错误！请检查源文件是否是文本文件？" + Err.Message, "信息提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            IN_cloud.Dispose();
+            OUT_cloud.Dispose();
+            GC.Collect();
+
+
+
+            //ABC.SetInputCloud(cloud);
+
+
+        }
+
+        private void OutlierRemoval(  )
+        {
+            
+        }
         private void openGLControl1_OpenGLDraw(object sender, RenderEventArgs args)
         {
             gl = this.openGLControl1.OpenGL;
@@ -378,5 +481,7 @@ namespace SetColor_test
             gl.Flush();
             GC.Collect();
         }
+
+
     }
 }
